@@ -1,35 +1,22 @@
 import React, { useEffect, useState } from "react"
 import { Input } from "../primitives/input/input.component"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
-import {
-  setFilteredOptions,
-  setSelectedDocuments,
-} from "../../redux/document-selector/document-selector.slice"
+import { setSelectedDocuments } from "../../redux/document-selector/document-selector.slice"
 import { AVALIABLE_DOCS } from "../../utils/constants"
-import {
-  getFilteredOptions,
-  getJobTemplates,
-  getLocations,
-  getSearchResults,
-  getSelectedDocuments,
-  getSeniority,
-} from "../../redux/document-selector/selectors"
+import { getSearchResults } from "../../redux/document-selector/selectors"
 import { Accordion } from "../primitives/accordion/accordian.component"
 import { SelectedDocument } from "../seletced-documents/selected-documents.component"
-import { Badge } from "../primitives/badge/badge.component"
 import { ToggleSwitch } from "../primitives/switch/switch.component"
-import { SearchDropdown } from "../primitives/searchable-dropdown/searchable-dropdown.component"
 import { DocumentFilter } from "../document-filter/document-filter.component"
 
 export const DocumentSelect = () => {
   const [searchQuery, setSearchQuey] = useState("")
+  const [isChecked, setChecked] = useState(false)
 
   const allDocuments = useAppSelector(getSearchResults)
-
   const [filteredDocuments, setFilterdDocument] = useState(allDocuments)
-  const dispatch = useAppDispatch()
 
-  //const selectedDocuments = useAppSelector(getSelectedDocuments)
+  const dispatch = useAppDispatch()
 
   const handleItemSelect = (item: string) => {
     dispatch((dispatch, getState) => {
@@ -62,12 +49,10 @@ export const DocumentSelect = () => {
     searchFilter()
   }, [searchQuery])
 
-  const [isChecked, setChecked] = useState(false)
-
   return (
-    <div className='my-0 mx-auto  h-[auto] flex items-center justify-center mt-2'>
-      <div className='w-[1024px] justify-start items-center gap-6 inline-flex'>
-        <div className='w-[500px] self-stretch p-4 bg-white rounded-lg border border-gray-300 flex-col justify-start items-start gap-3 inline-flex'>
+    <>
+      <div className='max-w-md mx-auto px-4 py-4 flex flex-col items-center justify-center sm:flex-row md:flex md:items-center md:justify-center md:gap-4'>
+        <div className='w-full md:w-[500px] self-stretch p-4 bg-white rounded-lg border border-gray-300 flex-col justify-start items-start gap-3 inline-flex'>
           <div className="self-stretch text-gray-900 text-base font-medium font-['Inter'] leading-normal">
             Available Documents
           </div>
@@ -143,10 +128,11 @@ export const DocumentSelect = () => {
             )}
           </div>
         </div>
-        <div className='w-[500px] self-stretch p-4 bg-white rounded-lg border border-gray-300 flex-col justify-start items-start gap-3 inline-flex'>
+
+        <div className='w-full md:w-[500px] self-stretch p-4 bg-white rounded-lg border border-gray-300 flex-col justify-start items-start gap-3 inline-flex'>
           <SelectedDocument />
         </div>
       </div>
-    </div>
+    </>
   )
 }

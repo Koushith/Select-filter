@@ -15,12 +15,11 @@ export const DocumentFilter = () => {
 
   const locations = useAppSelector(getLocations)
   const seniority = useAppSelector(getSeniority)
-  //filtered seardh deopdown
+
   const filteredOptions = useAppSelector(getFilteredOptions)
   const dispatch = useAppDispatch()
 
   const removeFromFilterHandler = (option) => {
-    console.log("option", option)
     const updatedSelectedItems = filteredOptions.filter(
       (selectedItem) => selectedItem !== option
     )
@@ -42,7 +41,7 @@ export const DocumentFilter = () => {
       <div className="mt-2 text-gray-900 text-sm font-medium font-['Inter'] leading-none">
         Filter by:
       </div>
-      <div className='self-stretch mt-2 justify-start flex gap-1'>
+      <div className='self-stretch mt-2 flex flex-col md:flex-row justify-start gap-1'>
         <SearchDropdown
           items={jobTemplates}
           label='Job Templates'
@@ -55,7 +54,7 @@ export const DocumentFilter = () => {
         />
       </div>
 
-      <div className='self-stretch mt-2 justify-start flex gap-1'>
+      <div className='self-stretch mt-2 flex flex-col md:flex-row justify-start gap-1'>
         <SearchDropdown
           items={seniority}
           label='Subsidiary'
