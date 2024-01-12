@@ -29,30 +29,55 @@ const Accordion: React.FC<AccordionProps> = ({
   }
 
   return (
-    <div className='border w-[100%] '>
+    <div className='border-b  rounded w-[100%] bg-gray-50 '>
       <div
         className='flex w-full justify-between items-center p-4 cursor-pointer'
         onClick={toggleAccordion}
       >
-        <h2 className='text-lg font-semibold'>{heading}</h2>
-        <span className='text-gray-600'>{isOpen ? "-" : "+"}</span>
+        <h2 className='text-gray-600 text-base font-medium '>{heading}</h2>
+
+        <i
+          className={`fa-solid ${isOpen ? "fa-chevron-down" : "fa-chevron-up"}`}
+        ></i>
       </div>
       {isOpen && (
-        <div className='p-4'>
-          <ul>
+        <div className=''>
+          <>
             {children.map((item, index) => (
-              <li
-                key={index}
-                className={`mb-2 cursor-pointer ${
-                  //@ts-ignore
-                  selectedDocuments.includes(item) ? "text-orange-500" : ""
-                }`}
-                onClick={() => handleItemClick(item)}
-              >
-                {item}
-              </li>
+              <div className='p-4 h-10 w-full bg-white  py-2 rounded  items-center  inline-flex justify-between'>
+                <div
+                  className='grow shrink basis-0 flex-col justify-end items-start gap-0.5 inline-flex '
+                  onClick={() => handleItemClick(item)}
+                >
+                  <p
+                    className={`self-stretch ${
+                      //@ts-ignore
+                      selectedDocuments.includes(item)
+                        ? "text-orange-600"
+                        : "text-gray-900"
+                    } text-sm font-medium font-['Inter'] leading-none cursor-pointer`}
+                  >
+                    {item}
+                  </p>
+                </div>
+                <div className='p-1 bg-white rounded border border-gray-200 justify-center items-center flex'>
+                  <div
+                    className='w-4 h-4 justify-center items-center flex'
+                    onClick={() => handleItemClick(item)}
+                  >
+                    <i
+                      className={`w-3 h-3 text-center ${
+                        //@ts-ignore
+                        selectedDocuments.includes(item)
+                          ? "text-orange-600"
+                          : "text-gray-900"
+                      }  text-xs font-black fa-solid fa-right-long cursor-pointer`}
+                    ></i>
+                  </div>
+                </div>
+              </div>
             ))}
-          </ul>
+          </>
         </div>
       )}
     </div>

@@ -6,7 +6,7 @@ import { getAllDocumentSelectorState } from "./redux/document-selector/selectors
 
 export const App = () => {
   return (
-    <div>
+    <div className='bg-gray-50'>
       <OnboradingScreen />
     </div>
   )

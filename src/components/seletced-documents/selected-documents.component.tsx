@@ -3,6 +3,7 @@ import { Input } from "../primitives/input/input.component"
 import { getSelectedDocuments } from "../../redux/document-selector/selectors"
 import { useAppDispatch, useAppSelector } from "../../redux/hooks"
 import { setSelectedDocuments } from "../../redux/document-selector/document-selector.slice"
+import LeftArrow from "../../assets/left-arrow.svg"
 
 export const SelectedDocument = () => {
   const selectedDocuments = useAppSelector(getSelectedDocuments)
@@ -33,7 +34,7 @@ export const SelectedDocument = () => {
 
   return (
     <>
-      <div className="self-stretch text-gray-900 text-base font-medium font-['Inter'] leading-normal">
+      <div className="w-[500px] self-stretch text-gray-900 text-base font-medium font-['Inter'] leading-normal">
         Selected Documents
       </div>
       <div className='self-stretch h-9 flex-col justify-start items-start gap-2 flex'>
@@ -67,11 +68,11 @@ export const SelectedDocument = () => {
 
 export const EmptyState = () => {
   return (
-    <div className='w-96 h-96 p-10 bg-gray-100 rounded-lg border border-gray-200 flex-col justify-start items-center gap-6 inline-flex'>
-      <div className='h-16 justify-center items-center inline-flex'>
-        <i className='fa-solid fa-left-long'></i>
+    <div className='w-full h-96 p-10 bg-gray-100 rounded-lg border border-gray-200 flex-col justify-start items-center gap-6 inline-flex'>
+      <div className=' justify-center items-center inline-flex'>
+        <img src={LeftArrow} />
       </div>
-      <p className="self-stretch text-center text-gray-500 text-xs font-semibold font-['Inter'] leading-none">
+      <p className="self-stretch text-center text-gray-500 text-xs font-semibold font-['Inter'] leading-[1.5]">
         Select documents from the left panel to have employees review them and
         provide a signature acknowledging review
       </p>
