@@ -19,6 +19,8 @@ import { Accordion } from "../primitives/accordion/accordian.component"
 import { SelectedDocument } from "../seletced-documents/selected-documents.component"
 import { Select } from "../primitives/select/select.component"
 import { Badge } from "../primitives/badge/badge.component"
+import { ToggleSwitch } from "../primitives/switch/switch.component"
+import { SearchDropdown } from "../primitives/searchable-dropdown/searchable-dropdown.component"
 
 export const DocumentSelect = () => {
   const [isEnabled, setIsEnabled] = useState(false)
@@ -34,7 +36,7 @@ export const DocumentSelect = () => {
   const dispatch = useAppDispatch()
 
   const filteredOptions = useAppSelector(getFilteredOptions)
-
+  const selectedDocuments = useAppSelector(getSelectedDocuments)
   const selectHandler = (e) => {
     dispatch(setFilteredOptions([...filteredOptions, e.target.value]))
   }
@@ -75,6 +77,14 @@ export const DocumentSelect = () => {
   const handleToggle = (value: boolean) => {
     setIsEnabled(value)
   }
+
+  const [isChecked, setChecked] = useState(false)
+
+  const handleSelect = (selectedValue) => {
+    console.log("Selected:", selectedValue)
+    // Perform any other actions with the selected value
+  }
+
   return (
     <div className='my-0 mx-auto  h-[auto] flex items-center justify-center mt-2'>
       <div className='w-[1024px] justify-start items-center gap-6 inline-flex'>
@@ -101,54 +111,18 @@ export const DocumentSelect = () => {
               <div className="mt-2 text-gray-900 text-sm font-medium font-['Inter'] leading-none">
                 Filter by:
               </div>
-              <div className='self-stretch mt-2 justify-start items-start gap-3 inline-flex'>
-                <select
-                  className='w-[231px] flex-1 h-9 px-2.5 py-2 bg-white rounded-lg border border-gray-300 '
-                  name='jontemplates'
-                  id='senioruty'
-                  onChange={(e) => selectHandler(e)}
-                >
-                  {jobTemplates.map((template) => (
-                    <option value={template} key={template}>
-                      {template}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  className=' w-[231px]  h-9 px-2.5 py-2 bg-white rounded-lg border border-gray-300 '
-                  name='jontemplates'
-                  id='senioruty'
-                  onChange={(e) => selectHandler(e)}
-                >
-                  {locations.map((location) => (
-                    <option value={location} key={location}>
-                      {location}
-                    </option>
-                  ))}
-                </select>
+              <div className='self-stretch mt-2 justify-start flex gap-1'>
+                <SearchDropdown
+                  items={seniority}
+                  label='Seniority'
+                  onSelect={handleSelect}
+                />
+                <SearchDropdown items={seniority} onSelect={handleSelect} />
               </div>
-              <div className='self-stretch mt-2 justify-start items-start gap-3 inline-flex'>
-                <select
-                  className=' w-[231px]  h-9 px-2.5 py-2 bg-white rounded-lg border border-gray-300 '
-                  name='Subsidory'
-                  id='Subsidory'
-                >
-                  <option value={"Subsidory"}>Subsidory</option>
-                </select>
 
-                <select
-                  name='seniority'
-                  className=' w-[231px]  h-9 px-2.5 py-2 bg-white rounded-lg border border-gray-300 '
-                  id='senioruty'
-                  onChange={(e) => selectHandler(e)}
-                >
-                  {seniority.map((seniority) => (
-                    <option value={seniority} key={seniority}>
-                      {seniority}
-                    </option>
-                  ))}
-                </select>
+              <div className='self-stretch mt-2 justify-start flex gap-1'>
+                <SearchDropdown items={seniority} onSelect={handleSelect} />
+                <SearchDropdown items={seniority} onSelect={handleSelect} />
               </div>
               <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
                 <Badge onClickHandler={() => alert("clicked")} /> <Badge />{" "}
@@ -170,10 +144,24 @@ export const DocumentSelect = () => {
             </div>
             <div className='justify-start items-start flex'>
               <div className='justify-start items-center gap-2 flex'>
-                <div className='w-14 h-7 relative'>
-                  <div className='w-14 h-7 left-0 top-0 absolute bg-gray-200 rounded-3xl' />
-                  <div className='w-5 h-5 left-[3.50px] top-[2.80px] absolute bg-white rounded-3xl' />
-                </div>
+                <ToggleSwitch
+                  checked={isChecked}
+                  onChange={() => {
+                    setChecked(!isChecked)
+
+                    if (!isChecked) {
+                      const allDocuments = filteredDocuments
+                        .map((document) => document.content)
+                        .flat()
+
+                      dispatch(setSelectedDocuments(allDocuments))
+                    } else {
+                      // If the switch is turned off, you might want to handle this case as well
+                      // For example, dispatch an action to clear selected documents
+                      dispatch(setSelectedDocuments([]))
+                    }
+                  }}
+                />
                 <div className='flex-col justify-start items-start gap-1.5 inline-flex'>
                   <div className="text-gray-900 text-base font-normal font-['Inter'] leading-tight">
                     Select All
