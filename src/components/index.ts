@@ -5,3 +5,4 @@ export * from './primitives/input/input.component'
 export * from './primitives/select/select.component'
 
 export * from './primitives/accordion/accordian.component'
+export * from './primitives/badge/badge.component'

@@ -47,28 +47,44 @@ export const SelectedDocument = () => {
         />
       </div>
       {/* Display filtered documents */}
-      <div>
-        {filteredDocuments.length <= 0 && <EmptyState />}
-
-        {filteredDocuments.map((document, i) => (
-          <div className='flex justify-between' key={i}>
-            <h1>{document}</h1>
+      {filteredDocuments.length <= 0 ? (
+        <EmptyState />
+      ) : (
+        <div className='mt-3 w-[100%] p-2 rounded-lg border border-emerald-600 flex-col justify-start items-start gap-3 inline-flex'>
+          {filteredDocuments.map((document, i) => (
             <div
-              className='cursor-pointer'
-              onClick={() => removeSelectedDocumentHandler(document)}
+              key={i}
+              className='w-[100%] h-10 px-1.5 py-2 bg-white rounded justify-between items-center gap-2 inline-flex'
             >
-              x
+              <div className='flex items-center'>
+                <div className='w-4 h-4 justify-center items-center flex'>
+                  <i className='fa-solid w-3 h-3 text-emerald-600 fa-check'></i>
+                </div>
+                <div className='grow ml-4 flex-col justify-center items-start gap-0.5 inline-flex'>
+                  <div className="self-stretch text-gray-900 text-sm font-medium font-['Inter'] leading-none">
+                    {document}
+                  </div>
+                </div>
+              </div>
+              <div className='p-1 cursor-pointer bg-white rounded border border-gray-200 justify-center items-center flex'>
+                <div
+                  onClick={() => removeSelectedDocumentHandler(document)}
+                  className='w-4 h-4 justify-center items-center flex'
+                >
+                  <i className='fa-solid text-gray-800 text-xs font-black fa-xmark'></i>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </>
   )
 }
 
 export const EmptyState = () => {
   return (
-    <div className='w-full h-96 p-10 bg-gray-100 rounded-lg border border-gray-200 flex-col justify-start items-center gap-6 inline-flex'>
+    <div className='w-full h-full   p-10 bg-gray-100 rounded-lg border border-gray-200 flex-col justify-start items-center gap-6 inline-flex'>
       <div className=' justify-center items-center inline-flex'>
         <img src={LeftArrow} />
       </div>
