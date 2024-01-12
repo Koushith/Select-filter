@@ -39,6 +39,7 @@ export const DocumentSelect = () => {
 
   const searchFilter = () => {
     const response = allDocuments.filter((res) =>
+      //@ts-ignore
       res.heading.toLowerCase().includes(searchQuery)
     )
     // dispatch(setSearchResults(response))

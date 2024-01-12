@@ -1,4 +1,3 @@
-// Accordion.tsx
 import React, { useState } from "react"
 import { useAppSelector } from "../../../hooks/hooks"
 import { getSelectedDocuments } from "../../../redux/document-selector/selectors"
@@ -44,7 +43,7 @@ const Accordion: React.FC<AccordionProps> = ({
         <div className=''>
           <>
             {children.map((item, index) => (
-              <div className='p-4 h-10 w-full hover:bg-orange-50 bg-white bg-white  py-2 rounded  items-center  inline-flex justify-between'>
+              <div className='p-4 h-10 w-full hover:bg-orange-50 bg-white  py-2 rounded  items-center  inline-flex justify-between'>
                 <div
                   className='grow shrink basis-0 flex-col justify-end items-start gap-0.5 inline-flex '
                   onClick={() => handleItemClick(item)}

@@ -1,4 +1,6 @@
-export const JOB_TEMPLATE = [
+import { AvailableDocs, JobTemplate, Locations, Seniority } from "../types/response.type";
+
+export const JOB_TEMPLATE: JobTemplate = [
   "Heavy Equipment Operator",
   "Heavy Equipment Service Technician",
   "Equipment Operator",
@@ -16,7 +18,7 @@ export const JOB_TEMPLATE = [
 ]
 
 
-export const LOCATIONS = [
+export const LOCATIONS: Locations = [
   "New York, NY",
   "Los Angeles, CA",
   "San Francisco, CA",
@@ -27,7 +29,7 @@ export const LOCATIONS = [
   "Austin, TX"
 ]
 
-export const SENIORITY = [
+export const SENIORITY: Seniority = [
   "Entry-Level Position",
   "Individual Contributor",
   "Manager",
@@ -37,7 +39,7 @@ export const SENIORITY = [
 
 
 
-export const AVALIABLE_DOCS = [
+export const AVALIABLE_DOCS: AvailableDocs[] = [
   {
     heading: "Drug Policies",
     content: ["Drug Policy Overview", "Controlled Substances Guidelines", "Employee Responsibilities"],
