@@ -113,7 +113,7 @@ export const DocumentSelect = () => {
           </div>
 
           {/* avaliable docs */}
-          <div className='w-full border rounded'>
+          <div className='w-full border  border-orange-500 rounded'>
             {filteredDocuments.length > 0 && (
               <>
                 {filteredDocuments.map((document) => (
