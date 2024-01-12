@@ -21,6 +21,20 @@ This is a basic React project set up using Vite.
 
 Make sure you have Node.js installed on your machine. You can download it from [Node.js](https://nodejs.org/).
 
+### Screenshots
+
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/4aba0d38-4a5e-4ad0-93dc-7452a6952be8">
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/24c2bfee-864f-4dbd-a671-9aafef51e277">
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/dc905759-d0a5-4af2-95ca-1d1af3c480a9">
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/35f9ad2b-cabe-4da4-9603-610d1bbdbea0">
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/38ca9f89-1621-4480-b749-a749d3e69261">
+![image](https://github.com/Koushith/Select-filter/assets/30016242/cc6fb95a-84fa-466a-86d4-93b2946343b0)
+
+
+
+
+
+
 ### Installation
 
 1. Clone the repository:
