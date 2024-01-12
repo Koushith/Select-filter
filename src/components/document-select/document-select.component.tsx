@@ -7,7 +7,6 @@ import {
 } from "../../redux/document-selector/document-selector.slice"
 import { AVALIABLE_DOCS } from "../../utils/constants"
 import {
-  getFilterForDropdown,
   getFilteredOptions,
   getJobTemplates,
   getLocations,
@@ -17,13 +16,11 @@ import {
 } from "../../redux/document-selector/selectors"
 import { Accordion } from "../primitives/accordion/accordian.component"
 import { SelectedDocument } from "../seletced-documents/selected-documents.component"
-import { Select } from "../primitives/select/select.component"
 import { Badge } from "../primitives/badge/badge.component"
 import { ToggleSwitch } from "../primitives/switch/switch.component"
 import { SearchDropdown } from "../primitives/searchable-dropdown/searchable-dropdown.component"
 
 export const DocumentSelect = () => {
-  const [isEnabled, setIsEnabled] = useState(false)
   const [searchQuery, setSearchQuey] = useState("")
 
   const allDocuments = useAppSelector(getSearchResults)
@@ -37,13 +34,18 @@ export const DocumentSelect = () => {
 
   //filtered seardh deopdown
   const filteredOptions = useAppSelector(getFilteredOptions)
-  console.log("filteredOptions", filteredOptions)
 
-  const selectedDocuments = useAppSelector(getSelectedDocuments)
+  //const selectedDocuments = useAppSelector(getSelectedDocuments)
 
   const selectHandler = (option) => {
-    console.log("eee", option)
-    dispatch(setFilteredOptions([...filteredOptions, option]))
+    // Check if the option is already in filteredOptions
+    //@ts-ignore
+    const existingFilter = filteredOptions.includes(option)
+
+    if (!existingFilter) {
+      // If the filter does not exist, add it
+      dispatch(setFilteredOptions([...filteredOptions, option]))
+    }
   }
 
   const handleItemSelect = (item: string) => {
@@ -77,16 +79,7 @@ export const DocumentSelect = () => {
     searchFilter()
   }, [searchQuery])
 
-  const handleToggle = (value: boolean) => {
-    setIsEnabled(value)
-  }
-
   const [isChecked, setChecked] = useState(false)
-
-  const handleSelect = (selectedValue) => {
-    console.log("Selected:", selectedValue)
-    // Perform any other actions with the selected value
-  }
 
   const removeFromFilterHandler = (option) => {
     console.log("option", option)
@@ -117,7 +110,7 @@ export const DocumentSelect = () => {
               </>
             </div>
 
-            <div className='z-50'>
+            <div className='z-50 w-full'>
               <div className="mt-2 text-gray-900 text-sm font-medium font-['Inter'] leading-none">
                 Filter by:
               </div>
@@ -152,6 +145,7 @@ export const DocumentSelect = () => {
                   <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
                     {filteredOptions.map((option) => (
                       <Badge
+                        key={option}
                         text={option}
                         onClickHandler={() => removeFromFilterHandler(option)}
                       />
@@ -206,8 +200,9 @@ export const DocumentSelect = () => {
           <div className='w-full border rounded'>
             {filteredDocuments.length > 0 && (
               <>
-                {filteredDocuments.map((document, i) => (
+                {filteredDocuments.map((document) => (
                   <Accordion
+                    key={document.heading}
                     heading={document.heading}
                     children={document.content}
                     selectedItem={handleItemSelect}

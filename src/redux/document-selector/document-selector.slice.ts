@@ -11,23 +11,6 @@ const initialState = {
   jobTemplates: JOB_TEMPLATE,
   seniority: SENIORITY,
   locations: LOCATIONS,
-  filterOptions: [
-    {
-      jobTemplates: JOB_TEMPLATE.map((template) => {
-        return { label: template, value: template }
-      }),
-    },
-    {
-      seniority: SENIORITY.map((template) => {
-        return { label: template, value: template }
-      }),
-    },
-    {
-      locations: LOCATIONS.map((template) => {
-        return { label: template, value: template }
-      }),
-    },
-  ],
   filteredResults: [],
   selectedDocuments: [],
 }
