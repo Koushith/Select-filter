@@ -17,7 +17,7 @@ export const Badge: React.FC<BadgeProps> = ({
 }: BadgeProps) => {
   return (
     <div
-      className={`h-6 px-3 mt-1 py-0.5 rounded-md justify-start items-center gap-1 inline-flex ${bgColor}`}
+      className={`h-6 mr-2 px-3 mt-1 py-0.5 rounded-md justify-start items-center gap-1 inline-flex ${bgColor}`}
     >
       <div
         className={`text-center ${textColor} text-sm font-medium font-['Inter'] leading-tight`}

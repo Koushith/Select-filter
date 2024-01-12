@@ -41,12 +41,10 @@ export const DocumentSelect = () => {
 
   const selectedDocuments = useAppSelector(getSelectedDocuments)
 
-  const selectHandler = (e) => {
-    console.log("eee", e)
-    dispatch(setFilteredOptions([...filteredOptions]))
+  const selectHandler = (option) => {
+    console.log("eee", option)
+    dispatch(setFilteredOptions([...filteredOptions, option]))
   }
-
-  const filterOption = useAppSelector(getFilterForDropdown)
 
   const handleItemSelect = (item: string) => {
     dispatch((dispatch, getState) => {
@@ -90,6 +88,13 @@ export const DocumentSelect = () => {
     // Perform any other actions with the selected value
   }
 
+  const removeFromFilterHandler = (option) => {
+    console.log("option", option)
+    const updatedSelectedItems = filteredOptions.filter(
+      (selectedItem) => selectedItem !== option
+    )
+    dispatch(setFilteredOptions(updatedSelectedItems))
+  }
   return (
     <div className='my-0 mx-auto  h-[auto] flex items-center justify-center mt-2'>
       <div className='w-[1024px] justify-start items-center gap-6 inline-flex'>
@@ -97,7 +102,7 @@ export const DocumentSelect = () => {
           <div className="self-stretch text-gray-900 text-base font-medium font-['Inter'] leading-normal">
             Available Documents
           </div>
-          <div className='self-stretch h-56 flex-col justify-start items-start gap-3 flex'>
+          <div className='self-stretch  flex-col justify-start items-start gap-3 flex'>
             <div className='self-stretch h-9 flex-col justify-start items-start gap-2 flex'>
               <>
                 <>
@@ -141,10 +146,19 @@ export const DocumentSelect = () => {
                   onSelect={selectHandler}
                 />
               </div>
-              <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
-                <Badge onClickHandler={() => alert("clicked")} /> <Badge />{" "}
-                <Badge /> <Badge /> <Badge /> <Badge />
-              </div>
+
+              {filteredOptions.length > 0 && (
+                <>
+                  <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
+                    {filteredOptions.map((option) => (
+                      <Badge
+                        text={option}
+                        onClickHandler={() => removeFromFilterHandler(option)}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
