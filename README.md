@@ -8,7 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Select-filter
 
-Sure, here's a basic README file for setting up a Vite project with React:
+
 
 ```markdown
 # React Project with Vite
@@ -26,13 +26,13 @@ Make sure you have Node.js installed on your machine. You can download it from [
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-vite-react-project.git
+   git clone https://github.com/your-username/document-slect.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd your-vite-react-project
+   cd document-select
    ```
 
 3. Install dependencies:
@@ -49,7 +49,7 @@ To run the development server, use the following command:
 npm run dev
 ```
 
-Visit `http://localhost:3000` in your browser to see the application.
+Visit `http://localhost:5173` in your browser to see the application.
 
 ## Build
 
@@ -60,28 +60,3 @@ npm run build
 ```
 
 This will generate a `dist` folder containing the optimized production build.
-
-## Additional Commands
-
-- **Linting:**
-
-  To run ESLint for linting:
-
-  ```bash
-  npm run lint
-  ```
-
-- **Unit Testing:**
-
-  To run unit tests:
-
-  ```bash
-  npm test
-  ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Replace `"your-username/your-vite-react-project.git"` with your actual repository URL. This basic README includes instructions for installation, development, building, linting, and unit testing. You can customize it further based on your project's specific needs.
