@@ -13,7 +13,14 @@ This template provides a minimal setup to get React working in Vite with HMR and
 <img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/dc905759-d0a5-4af2-95ca-1d1af3c480a9">
 <img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/35f9ad2b-cabe-4da4-9603-610d1bbdbea0">
 <img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/38ca9f89-1621-4480-b749-a749d3e69261">
-![image](https://github.com/Koushith/Select-filter/assets/30016242/0fc44356-fa4a-49a2-9869-9f90aeeebb25)
+<img width="987" alt="image" src="https://github.com/Koushith/Select-filter/assets/30016242/204c3c96-90d1-46a1-ba80-1091a8e8244b">
+
+
+### Tech
+- React
+- ReduxToolkit
+- TailWindCss
+
 
 
 
