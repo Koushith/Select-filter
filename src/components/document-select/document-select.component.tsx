@@ -35,10 +35,15 @@ export const DocumentSelect = () => {
   const [filteredDocuments, setFilterdDocument] = useState(allDocuments)
   const dispatch = useAppDispatch()
 
+  //filtered seardh deopdown
   const filteredOptions = useAppSelector(getFilteredOptions)
+  console.log("filteredOptions", filteredOptions)
+
   const selectedDocuments = useAppSelector(getSelectedDocuments)
+
   const selectHandler = (e) => {
-    dispatch(setFilteredOptions([...filteredOptions, e.target.value]))
+    console.log("eee", e)
+    dispatch(setFilteredOptions([...filteredOptions]))
   }
 
   const filterOption = useAppSelector(getFilterForDropdown)
@@ -107,22 +112,34 @@ export const DocumentSelect = () => {
               </>
             </div>
 
-            <div>
+            <div className='z-50'>
               <div className="mt-2 text-gray-900 text-sm font-medium font-['Inter'] leading-none">
                 Filter by:
               </div>
               <div className='self-stretch mt-2 justify-start flex gap-1'>
                 <SearchDropdown
-                  items={seniority}
-                  label='Seniority'
-                  onSelect={handleSelect}
+                  items={jobTemplates}
+                  label='Job Templates'
+                  onSelect={selectHandler}
                 />
-                <SearchDropdown items={seniority} onSelect={handleSelect} />
+                <SearchDropdown
+                  items={locations}
+                  label='Locations'
+                  onSelect={selectHandler}
+                />
               </div>
 
               <div className='self-stretch mt-2 justify-start flex gap-1'>
-                <SearchDropdown items={seniority} onSelect={handleSelect} />
-                <SearchDropdown items={seniority} onSelect={handleSelect} />
+                <SearchDropdown
+                  items={seniority}
+                  label='Subsidiary'
+                  onSelect={selectHandler}
+                />
+                <SearchDropdown
+                  items={seniority}
+                  label='Seniority'
+                  onSelect={selectHandler}
+                />
               </div>
               <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
                 <Badge onClickHandler={() => alert("clicked")} /> <Badge />{" "}
@@ -131,7 +148,7 @@ export const DocumentSelect = () => {
             </div>
           </div>
 
-          <div className='self-stretch mt-4 px-1.5 py-2 bg-white rounded justify-start items-center gap-2 inline-flex'>
+          <div className='self-stretch  mt-4 px-1.5 py-2 bg-white rounded justify-start items-center gap-2 inline-flex '>
             <div className='grow shrink basis-0 h-3.5 justify-start items-center gap-0.5 flex'>
               <div className="text-gray-900 text-sm font-medium font-['Inter'] leading-none">
                 {filteredDocuments?.length
