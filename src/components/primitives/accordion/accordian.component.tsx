@@ -1,6 +1,6 @@
 // Accordion.tsx
 import React, { useState } from "react"
-import { useAppSelector } from "../../../redux/hooks"
+import { useAppSelector } from "../../../hooks/hooks"
 import { getSelectedDocuments } from "../../../redux/document-selector/selectors"
 
 interface AccordionProps {

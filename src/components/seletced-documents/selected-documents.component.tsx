@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Input } from "../primitives/input/input.component"
 import { getSelectedDocuments } from "../../redux/document-selector/selectors"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
 import { setSelectedDocuments } from "../../redux/document-selector/document-selector.slice"
 import LeftArrow from "../../assets/left-arrow.svg"
 

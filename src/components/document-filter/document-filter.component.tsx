@@ -8,7 +8,7 @@ import {
   getLocations,
   getSeniority,
 } from "../../redux/document-selector/selectors"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
 
 export const DocumentFilter = () => {
   const jobTemplates = useAppSelector(getJobTemplates)

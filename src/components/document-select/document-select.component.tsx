@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Input } from "../primitives/input/input.component"
-import { useAppDispatch, useAppSelector } from "../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks"
 import { setSelectedDocuments } from "../../redux/document-selector/document-selector.slice"
 import { AVALIABLE_DOCS } from "../../utils/constants"
 import { getSearchResults } from "../../redux/document-selector/selectors"
