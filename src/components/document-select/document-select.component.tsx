@@ -19,34 +19,17 @@ import { SelectedDocument } from "../seletced-documents/selected-documents.compo
 import { Badge } from "../primitives/badge/badge.component"
 import { ToggleSwitch } from "../primitives/switch/switch.component"
 import { SearchDropdown } from "../primitives/searchable-dropdown/searchable-dropdown.component"
+import { DocumentFilter } from "../document-filter/document-filter.component"
 
 export const DocumentSelect = () => {
   const [searchQuery, setSearchQuey] = useState("")
 
   const allDocuments = useAppSelector(getSearchResults)
-  const jobTemplates = useAppSelector(getJobTemplates)
-
-  const locations = useAppSelector(getLocations)
-  const seniority = useAppSelector(getSeniority)
 
   const [filteredDocuments, setFilterdDocument] = useState(allDocuments)
   const dispatch = useAppDispatch()
 
-  //filtered seardh deopdown
-  const filteredOptions = useAppSelector(getFilteredOptions)
-
   //const selectedDocuments = useAppSelector(getSelectedDocuments)
-
-  const selectHandler = (option) => {
-    // Check if the option is already in filteredOptions
-    //@ts-ignore
-    const existingFilter = filteredOptions.includes(option)
-
-    if (!existingFilter) {
-      // If the filter does not exist, add it
-      dispatch(setFilteredOptions([...filteredOptions, option]))
-    }
-  }
 
   const handleItemSelect = (item: string) => {
     dispatch((dispatch, getState) => {
@@ -81,13 +64,6 @@ export const DocumentSelect = () => {
 
   const [isChecked, setChecked] = useState(false)
 
-  const removeFromFilterHandler = (option) => {
-    console.log("option", option)
-    const updatedSelectedItems = filteredOptions.filter(
-      (selectedItem) => selectedItem !== option
-    )
-    dispatch(setFilteredOptions(updatedSelectedItems))
-  }
   return (
     <div className='my-0 mx-auto  h-[auto] flex items-center justify-center mt-2'>
       <div className='w-[1024px] justify-start items-center gap-6 inline-flex'>
@@ -97,62 +73,17 @@ export const DocumentSelect = () => {
           </div>
           <div className='self-stretch  flex-col justify-start items-start gap-3 flex'>
             <div className='self-stretch h-9 flex-col justify-start items-start gap-2 flex'>
-              <>
-                <>
-                  <Input
-                    type='search'
-                    placeholder='search'
-                    icon='fa-solid fa-magnifying-glass'
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuey(e.target.value)}
-                  />
-                </>
-              </>
+              <Input
+                type='search'
+                placeholder='search'
+                icon='fa-solid fa-magnifying-glass'
+                value={searchQuery}
+                onChange={(e) => setSearchQuey(e.target.value)}
+              />
             </div>
 
             <div className='z-50 w-full'>
-              <div className="mt-2 text-gray-900 text-sm font-medium font-['Inter'] leading-none">
-                Filter by:
-              </div>
-              <div className='self-stretch mt-2 justify-start flex gap-1'>
-                <SearchDropdown
-                  items={jobTemplates}
-                  label='Job Templates'
-                  onSelect={selectHandler}
-                />
-                <SearchDropdown
-                  items={locations}
-                  label='Locations'
-                  onSelect={selectHandler}
-                />
-              </div>
-
-              <div className='self-stretch mt-2 justify-start flex gap-1'>
-                <SearchDropdown
-                  items={seniority}
-                  label='Subsidiary'
-                  onSelect={selectHandler}
-                />
-                <SearchDropdown
-                  items={seniority}
-                  label='Seniority'
-                  onSelect={selectHandler}
-                />
-              </div>
-
-              {filteredOptions.length > 0 && (
-                <>
-                  <div className='mt-2 w-full p-2 bg-white  rounded-lg border border-gray-200'>
-                    {filteredOptions.map((option) => (
-                      <Badge
-                        key={option}
-                        text={option}
-                        onClickHandler={() => removeFromFilterHandler(option)}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
+              <DocumentFilter />
             </div>
           </div>
 

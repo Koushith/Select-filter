@@ -8,3 +8,4 @@ export * from './primitives/accordion/accordian.component'
 export * from './primitives/badge/badge.component'
 
 export * from './primitives/searchable-dropdown/searchable-dropdown.component'
+export * from './document-filter/document-filter.component'
